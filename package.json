@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Learning react",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "karn kumar",
   "license": "ISC",
@@ -11,10 +13,12 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
-  "devDependencies": {
-    "parcel": "^2.15.2"
-  },
   "browserslist": [
     "last 10 versions"
-  ]
+  ],
+  "devDependencies": {
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "parcel": "^2.15.2"
+  }
 }
