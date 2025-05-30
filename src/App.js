@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
-import {productsList} from './data';
 import {Header} from './components/Header';
 import { ProductContainer } from "./components/ProductContainer";
 

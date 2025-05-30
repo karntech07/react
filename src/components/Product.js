@@ -1,5 +1,3 @@
-import {productsList} from '../data';
-
 export const Product = (props) => {
     const {productData} = props;
     const {id, image, title, category, price} = productData;
