@@ -15,6 +15,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    align-items: center;
     margin: 10px;
 }
 
@@ -22,13 +23,17 @@
     margin: 10px
 }
 
-.product {
+.product, .shimmer {
     width: 200px;
-    backgroundColor: #0f0f0f;
+    background-color: #EFEFEF;
     border: 1px solid black; 
     margin: 10px;
     border-radius: 5px;
     padding: 7px;
+}
+
+.shimmer {
+    height: 250px;
 }
 
 .product:hover {
@@ -36,7 +41,7 @@
     border: 3px solid grey;
 }
 
-.products-list {
+.products-list, .shimmer-container {
     display: flex;
     flex-wrap: wrap;
 }
@@ -64,5 +69,9 @@ button {
 
 .reset-filter-icon-container {
    margin-left: 10px
+}
+
+.login {
+    width: 80px !important;
 }
 

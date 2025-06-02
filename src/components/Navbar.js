@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 const Home = () => {
     return <h3>Home</h3>
 }
@@ -16,12 +18,16 @@ const Cart = () => {
 
 
 export const Navbar = () => {
+    const [isLoginClicked, setIsLoginClicked] = useState(false);
     return (
         <div className="navbar">
             <Home></Home>
             <About></About>
             <ContactUs></ContactUs>
             <Cart></Cart>
+            <button className="login" onClick={() => {
+               setIsLoginClicked(!isLoginClicked)
+            }}>{isLoginClicked ? 'Logout' : 'Login'}</button>
         </div>
     )
 }
