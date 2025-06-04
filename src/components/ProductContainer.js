@@ -1,24 +1,22 @@
 import { Product } from "./Product";
-import { productsList } from "../utils/constant";
+import { PRODUCTS_URL } from "../utils/constant";
 import { useState, useEffect } from "react";
 import ProductShimmer from "./Shimmer/products-shimmer";
+import { Link } from "react-router-dom";
 
 export const ProductContainer = () => {
   const [products, setProduct] = useState([]);
   const [allProducts, setAllProduct] = useState([]);
   const [searchText, setSearchText] = useState('');
   useEffect(() => {
-    console.log('I am useeffect');
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const json = await fetch(
-      "https://fakestoreapiserver.reactbd.com/amazonproducts"
-    );
+    const json = await fetch(PRODUCTS_URL);
     const data = await json.json();
-    setProduct(data);
-    setAllProduct(data);
+    setProduct(data.products);
+    setAllProduct(data.products);
   };
 
   const filterProductByprice = () => {
@@ -28,13 +26,13 @@ export const ProductContainer = () => {
 
   const filterProductByRating = () => {
     const filteredProduct = products.filter(
-      (product) => product.rating.rate > 4
+      (product) => product.rating > 4
     );
     setProduct(filteredProduct);
   };
 
   const resetFilter = () => {
-    setProduct(productsList);
+    setProduct(allProducts);
   };
 
   if(products.length === 0 && !searchText && !searchText.length > 0) {
@@ -83,7 +81,9 @@ export const ProductContainer = () => {
       </div>
       <div className="products-list">
         {products.map((product) => (
-          <Product key={product.id} productData={product} />
+          <Link to={'products/'+product.id} key={product.id}>
+             <Product productData={product} />
+          </Link>
         ))}
       </div>
     </div>

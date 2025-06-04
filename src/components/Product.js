@@ -1,10 +1,10 @@
 export const Product = (props) => {
     const {productData} = props;
-    const {id, image, title, category, price} = productData;
+    const {thumbnail,category, price, title} = productData;
     return (
         <div className="product">
            <div className='product-image'>
-                <img src={image} alt="produc_image" width={60}/>
+                <img src={thumbnail} alt="produc_image" width={60}/>
            </div>
            <div className='product-details'>
             <h4>{title}</h4>

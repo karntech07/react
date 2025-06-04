@@ -1,30 +1,18 @@
 import {useState} from 'react';
-
-const Home = () => {
-    return <h3>Home</h3>
-}
-
-const About = () => {
-    return <h3>About</h3>
-}
-
-const ContactUs = () => {
-    return <h3>Contact Us</h3>
-}
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     return <h3>Cart</h3>
 }
 
-
 export const Navbar = () => {
     const [isLoginClicked, setIsLoginClicked] = useState(false);
     return (
         <div className="navbar">
-            <Home></Home>
-            <About></About>
-            <ContactUs></ContactUs>
-            <Cart></Cart>
+            <Link to='/'>Home</Link>
+            <Link to='/about'>About</Link>
+            <Link to='/contact'>Contact us</Link>
+
             <button className="login" onClick={() => {
                setIsLoginClicked(!isLoginClicked)
             }}>{isLoginClicked ? 'Logout' : 'Login'}</button>

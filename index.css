@@ -17,10 +17,15 @@
     flex-direction: row;
     align-items: center;
     margin: 10px;
+    width: 270px;
 }
 
 .navbar h3 {
     margin: 10px
+}
+
+.navbar a {
+    text-decoration: none;
 }
 
 .product, .shimmer {
