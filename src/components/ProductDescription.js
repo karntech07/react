@@ -1,24 +1,13 @@
-import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { PRODUCTS_URL } from "../utils/constant";
 import ProductShimmer from "./Shimmer/products-shimmer";
+import useProductDescriptionData from '../utils/useProductDescripttionData';
 
 export const ProductDescription = () => {
-  const [productDetail, setProductDetail] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetch(`${PRODUCTS_URL}/${id}`);
-    const json = await data.json();
-    setProductDetail(json);
-  };
-
+  const productDetail = useProductDescriptionData(id);
   if (productDetail === null) return <ProductShimmer></ProductShimmer>;
-  console.log(productDetail);
+
   const {
     title,
     warrantyInformation,
