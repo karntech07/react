@@ -91,3 +91,19 @@ button {
     cursor: pointer;
 }
 
+
+label {
+    top: 31px;
+    position: relative;
+    z-index: 9999;
+    left: 165px;
+    background-color: black;
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none
+}

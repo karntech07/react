@@ -2,7 +2,7 @@ export const Product = (props) => {
     const {productData} = props;
     const {thumbnail,category, price, title} = productData;
     return (
-        <div className="product">
+        <div className="product">   
            <div className='product-image'>
                 <img src={thumbnail} alt="produc_image" width={60}/>
            </div>
@@ -13,4 +13,15 @@ export const Product = (props) => {
            </div>
         </div>
     )
+}
+
+export const lowStockProduct = (Product) => {
+    return (props) => {
+        return (
+            <div>
+                <label>Low stock</label>
+                <Product {...props}/>
+            </div>   
+        )
+    }
 }

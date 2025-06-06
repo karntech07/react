@@ -1,4 +1,4 @@
-import { Product } from "./Product";
+import { Product, lowStockProduct } from "./Product";
 import { PRODUCTS_URL } from "../utils/constant";
 import { useState, useEffect } from "react";
 import ProductShimmer from "./Shimmer/products-shimmer";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export const ProductContainer = () => {
   const [products, setProduct] = useState([]);
   const [allProducts, setAllProduct] = useState([]);
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   useEffect(() => {
     fetchData();
   }, []);
@@ -25,9 +25,7 @@ export const ProductContainer = () => {
   };
 
   const filterProductByRating = () => {
-    const filteredProduct = products.filter(
-      (product) => product.rating > 4
-    );
+    const filteredProduct = products.filter((product) => product.rating > 4);
     setProduct(filteredProduct);
   };
 
@@ -35,33 +33,36 @@ export const ProductContainer = () => {
     setProduct(allProducts);
   };
 
-  if(products.length === 0 && !searchText && !searchText.length > 0) {
-    return <ProductShimmer></ProductShimmer>
+  if (products.length === 0 && !searchText && !searchText.length > 0) {
+    return <ProductShimmer></ProductShimmer>;
   }
 
-  if(products.length === 0 && searchText && searchText.length > 0) {
-    return <h1>No data to show</h1>
+  if (products.length === 0 && searchText && searchText.length > 0) {
+    return <h1>No data to show</h1>;
   }
 
-
+  const LowStockComponent = lowStockProduct(Product);
   return (
     <div className="body">
       <div className="filter-container">
-        <input 
-            type="text" 
-            placeholder="search product name..." 
-            value={searchText} 
-            onKeyUp={(event) => {
+        <input
+          type="text"
+          placeholder="search product name..."
+          value={searchText}
+          onKeyUp={(event) => {
             // we should use debouncing here
             setSearchText(event.target.value);
-            const filteredproducts = allProducts.filter(product => {
-                return product.title.toLowerCase().includes(event.target.value.toLowerCase())
+            const filteredproducts = allProducts.filter((product) => {
+              return product.title
+                .toLowerCase()
+                .includes(event.target.value.toLowerCase());
             });
             setProduct(filteredproducts);
-            }} 
-            onChange={(event) => {
-                setSearchText(event.target.value);
-            }}/>
+          }}
+          onChange={(event) => {
+            setSearchText(event.target.value);
+          }}
+        />
         <div className="filter-button-container">
           <button onClick={filterProductByprice}>
             Item above cost Rs. 100
@@ -81,8 +82,12 @@ export const ProductContainer = () => {
       </div>
       <div className="products-list">
         {products.map((product) => (
-          <Link to={'products/'+product.id} key={product.id}>
-             <Product productData={product} />
+          <Link to={"products/" + product.id} key={product.id}>
+            {product.availabilityStatus === "Low Stock" ? (
+              <LowStockComponent productData={product} />
+            ) : (
+              <Product productData={product} />
+            )}
           </Link>
         ))}
       </div>
